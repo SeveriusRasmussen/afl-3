@@ -54,17 +54,17 @@ bool chmod(const char *input, struct perms_t *perms) {
     // 3. Brug operatoren
     if (op == '+')
     {
-        perms->bits |= mask; //tænd bits
+        perms->bits |= mask; //tænd enkelte bits
     } else
     {
-        perms->bits &= ~mask;
+        perms->bits &= ~mask; //sluk enkelte bits
     }
 
     // Når man AND'er med en maske med 0'er i, slukker man for enkelte bits
     // Når man OR'er med en maske med 1'er i, tænder man for enkelte bits
 
-    // Hvis OTHER_READ er 0b000'000'100
-    // så er ~OTHER_READ  0b111'111'011
+    // Hvis OTHER_READ er 0b000'000'100 (tændes en 0 til 1)
+    // så er ~OTHER_READ  0b111'111'011 (slukke en 1 til 0)
     //
     // Eksempel:
     // 0644 og o-r giver 0640
